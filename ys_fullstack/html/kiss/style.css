@@ -1,0 +1,251 @@
+body {
+    background-color: #78e08f;
+    margin: 0;
+    /* height: 100%;
+    position: relative; */
+}
+
+.container {
+    position: absolute;
+    width: 232px;
+    height: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0;
+}
+
+.ball {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    border: 8px solid #000;
+    display: inline-block;
+}
+
+.face {
+    width: 70px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.face::before {
+    /* 要给伪类元素加大小，必须加display：black，或者定位 */
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 20px;
+    width: 18px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: red!important;
+}
+
+
+/* after出现在闭合的标签之前 */
+
+.face::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -5px;
+    width: 18px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: red!important;
+}
+
+.eye {
+    width: 15px;
+    height: 14px;
+    border-radius: 50%;
+    border-bottom: 5px solid #000;
+    position: absolute;
+}
+
+.eye-l {
+    left: 10px;
+}
+
+.eye-r {
+    right: 5px;
+}
+
+.mouth {
+    position: absolute;
+    width: 30px;
+    height: 14px;
+    border-bottom: 5px solid #000;
+    border-radius: 50%;
+    bottom: -5px;
+    right: 0;
+    left: 0;
+    /* 在绝对定位中要margin 0 auto 生效 必须要加left: 0;right: 0; */
+    margin: 0 auto;
+    transform: translateX(3px);
+}
+
+#l-ball {
+    animation: close 4s ease infinite;
+    z-index: 1;
+}
+
+@keyframes close {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(20px);
+    }
+    35% {
+        transform: translate(20px);
+    }
+    55% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.face-l {
+    animation: face 4s ease infinite;
+}
+
+@keyframes face {
+    0% {
+        transform: translate(0) rotate(0);
+    }
+    10% {
+        transform: translate(0) rotate(0);
+    }
+    20% {
+        transform: translate(5px) rotate(-2deg);
+    }
+    28% {
+        transform: translate(0) rotate(0);
+    }
+    35% {
+        transform: translate(5px) rotate(-2deg);
+    }
+    50% {
+        transform: translate(0) rotate(0);
+    }
+    100% {
+        transform: translate(0) rotate(0);
+    }
+}
+
+.ball-r {
+    position: relative;
+    float: right;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    border: 8px solid #000;
+}
+
+.face-r {
+    left: 0;
+    top: 37px;
+}
+
+.face-r::before {
+    width: 10px;
+    height: 10px;
+    right: -4px;
+}
+
+.face-r::after {
+    width: 10px;
+    height: 10px;
+    left: 5px;
+}
+
+.eye-r-p {
+    border-top: 5px solid #000;
+    /* 覆盖他，把之前的设置为none */
+    border-bottom: none;
+}
+
+.kiss-m {
+    position: absolute;
+    left: 25px;
+    top: 22px;
+    opacity: 0;
+    animation: kiss-m 4s ease infinite;
+}
+
+.kiss {
+    width: 13px;
+    height: 10px;
+    border-radius: 50%;
+    border-left: 5px solid black;
+}
+
+#r-ball {
+    animation: kiss 4s ease infinite;
+}
+
+@keyframes kiss {
+    40% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translate(30px) rotateZ(20deg);
+    }
+    60% {
+        transform: translate(-33px);
+    }
+    67% {
+        transform: translate(-33px);
+    }
+    77% {
+        transform: translate(0);
+    }
+}
+
+.mouth-r {
+    animation: mouth-m 4s ease infinite;
+}
+
+@keyframes mouth-m {
+    0% {
+        opacity: 1;
+    }
+    59% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+    66% {
+        opacity: 0;
+    }
+    67% {
+        opacity: 1;
+    }
+}
+
+@keyframes kiss-m {
+    0% {
+        opacity: 0;
+    }
+    59% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 1;
+    }
+    67% {
+        opacity: 0;
+    }
+}
