@@ -1,0 +1,120 @@
+*
+  margin 0
+  padding 0
+  list-style none
+#toast
+  display: none
+.movie
+  width 100%
+  &-head
+    width 100%
+    height 40px
+    line-height 40px
+    background-color #1e2025
+    color #ffffff
+    padding 0 10px
+    box-sizing border-box
+    display flex
+    .iconfont
+      width 16px
+    .title
+      flex 1
+      text-align center
+  &-info
+    padding 10px
+    background-color #1e2025
+    &_desc
+      width 100%
+      display: flex
+      .info-pic
+        width 122px
+        height 165px
+        overflow hidden
+        img 
+          width 100%
+      .info-container
+        flex: 1
+        color: #9b9da2
+        font-size: 14px
+        margin-left: 10px
+        .name
+          color: white
+          font-size: 24px
+          font-family: Arial,sans-serif
+          font-weight: normal
+        .type
+          span 
+            width 40px
+            height 14px
+            display: inline-block
+            background-image: url('https://s0.meituan.net/bs/myfe/canary/file/asgard/images/movie/movie-tag-2DIMAX.png')
+            background-size: cover
+            vertical-align: middle
+        .btn-wrap
+          display: flex
+          color: white
+          margin-top 10px
+          .flex
+            background-color:#58575d
+            line-height: 32px
+            flex: 1
+            width 113px
+            height 32px
+            border-radius: 5px
+            text-align: center
+            &:nth-child(2)
+              margin-left: 10px
+            .iconfont
+              font-size: 14px
+    &_rate
+      .rate-title
+        width 100%
+        height 25px
+        color: #ffffff
+        font-size 14px
+        &__left
+          float: left
+          .icon-maoyan
+            display: inline-block
+            width 20px
+            height 20px
+            z-index: 1
+            color red!important
+        &__right
+          float right
+          color #616066
+          .icon-arrow-left
+            display: inline-block
+            color: #616066
+            width 20px
+            height 20px
+    .rate-detail
+      display flex
+      margin-top: 8px
+      &__left 
+        display flex
+        flex 8
+        .grade
+          flex 1
+          text-align: center
+          h2
+            color: #feae29
+            font-size 25px
+            font-weight normal
+          p
+            color #616066
+            font-size 12px
+        .star
+          flex 1
+          .list
+            color #ffffff
+            font-size 2px
+      &__right
+        display flex
+        flex 5
+        width 125px
+        height 45px
+        margin 10px 10px 0 0
+        img 
+          width 100%
+         
