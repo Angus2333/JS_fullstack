@@ -1,0 +1,8 @@
+<block wx:for="{{products}}" wx:key="index">
+    <van-button type="primary"> 55</van-button>
+    <view>{{item.title}} </view>
+    <view>{{item.view}} </view>
+    <view>{{item.color}} </view>
+    <image class="" src="{{item.image}}" >
+    </image>
+</block>
