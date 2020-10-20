@@ -1,0 +1,13 @@
+/* pages/list/list.wxss */
+
+page {
+    height: 150%;
+}
+
+.item {
+    background-color: aliceblue;
+    color: gray;
+    font-size: 24rpx;
+    padding: 10px 20px;
+    margin-bottom: 15rpx;
+}

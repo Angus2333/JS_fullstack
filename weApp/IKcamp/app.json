@@ -1,0 +1,23 @@
+{
+    "pages": [
+        "pages/list/list",
+        "pages/flex/flex"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#09ba07",
+        "navigationBarTitleText": "牛刀小试",
+        "navigationBarTextStyle": "white"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "tabBar": {
+        "list": [{
+            "pagePath": "pages/flex/flex",
+            "text": "布局"
+        }, {
+            "pagePath": "pages/list/list",
+            "text": "列表"
+        }]
+    }
+}
