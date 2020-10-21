@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEUI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 元素属性 css面向对象的继承是一直存在的 inherit 
+        继承原则：从父元素继承，从基础类继承 */
+        
+        a {
+            text-decoration: none;
+            /* 移动端的特性 webkit提供 非标准化的属性 属于实验阶段的属性*/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.5)
+        }
+        /* 基类 */
+        
+        .weui-btn {
+            position: relative;
+            /* 接受我，块级元素 切换 */
+            display: block;
+            /* UI的锅，为啥是184 */
+            width: 184px;
+            margin-left: auto;
+            margin-right: auto;
+            /* 高度用padding撑起来 */
+            padding: 8px 24px;
+            box-sizing: border-box;
+            font-weight: 700;
+            text-align: center;
+            /* 内容的高度为字体大小乘以行高 */
+            font-size: 17px;
+            text-decoration: none;
+            color: #fff;
+            line-height: 1.41176471;
+            border-radius: 4px;
+            margin: 20px;
+        }
+        
+        .weui-btn_primary {
+            background-color: #07c160;
+        }
+        /* modifier */
+        
+        .weui-btn_loading .weui-btn_primary {
+            background-color: #06ae56;
+            color: #fff;
+        }
+        
+        .weui_loading {
+            background: url(./img/loading.png);
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            background-size: 100%;
+            transform: rotate(360deg);
+            transform: rotate(360deg);
+            animation: rotation 3s linear infinite;
+        }
+        
+        @keyframes rotation {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        
+        .weui-btn_default {
+            background-color: #fff;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+    weui 命名空间
+    积木 搭起来的页面
+    BEM国际命名规范 Block 
+    类名和很重要 tm-btn tb-btn 
+    a不知道写什么连接 就写这个 javascript:;
+    按钮的状态
+    Modifier _表示状态
+-->
+    <a href="javascript:;" class="weui-btn weui-btn_primary">cc</a>
+    <a href="javascript:;" class="weui-btn weui-btn_primary weui-btn-loading">
+        <i class="weui_loading"></i> 页面主操作
+    </a>
+    <a href="" class="weui-btn weui-btn_default weui-btn_loading">
+        <i class="weui_loading"></i>页面次操作
+    </a>
+
+</body>
+
+</html>
