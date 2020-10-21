@@ -1,13 +1,22 @@
 {
     "pages": [
-        "pages/list/list",
-        "pages/flex/flex"
+        "pages/index/index",
+        "pages/detail/detail",
+        "pages/flex/flex",
+        "pages/list/list"
     ],
     "window": {
-        "backgroundTextStyle": "light",
+        "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#09ba07",
-        "navigationBarTitleText": "牛刀小试",
-        "navigationBarTextStyle": "white"
+        "navigationBarTitleText": "iKcamp英语学习",
+        "navigationBarTextStyle": "white",
+        "enablePullDownRefresh": true
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json",

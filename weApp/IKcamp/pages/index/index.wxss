@@ -1,0 +1,21 @@
+/* pages/index/index.wxss */
+
+.group-content-item {
+    width: 750rpx;
+    margin: 31rpx;
+    font-size: 36rpx;
+    overflow: hidden;
+}
+
+.group-content-item-desc {
+    float: left;
+    width: 353rpx;
+    height: 203rpx;
+}
+
+.group-content-item-img {
+    float: right;
+    width: 257rpx;
+    height: 203rpx;
+    padding-right: 20rpx;
+}
