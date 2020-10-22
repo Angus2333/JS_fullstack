@@ -1,8 +1,11 @@
 <block wx:for="{{products}}" wx:key="index">
-    <van-button type="primary"> 55</van-button>
+    <van-button type="primary" bindtap="upload"> 默认按钮</van-button>
     <view>{{item.title}} </view>
     <view>{{item.view}} </view>
     <view>{{item.color}} </view>
     <image class="" src="{{item.image}}" >
     </image>
+</block>
+<block wx:for="{{photos}}" wx:key="index">
+    <image src="{{item.image}}" />
 </block>

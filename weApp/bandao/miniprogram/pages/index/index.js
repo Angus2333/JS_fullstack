@@ -2,10 +2,12 @@
 const db = wx.cloud.database() //引入数据库 database
 const app = getApp()
 const _ = db.command //crud 方便后面使用
+const photos = db.collection('photos')
 const productsCollection = db.collection('products')
 Page({
     data: {
         products: [],
+        photos: [],
         avatarUrl: './user-unlogin.png',
         userInfo: {},
         logged: false,
@@ -20,6 +22,14 @@ Page({
                 // console.log(res);
                 this.setData({
                     products: res.data
+                })
+            })
+        photos
+            .get()
+            .then(res => {
+                console.log(res);
+                this.setData({
+                    photos: res.data
                 })
             })
     },
@@ -54,7 +64,52 @@ Page({
             }
         })
     },
+    upload() {
+        // console.log('11');
+        //weixin给与小程序能力 html
+        // 在相机里面选择
+        wx.chooseImage({
+            count: 9, // 最多可以选择的图片张数，默认9
+            sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+            success: res => {
+                // successlog
+                // console.log(res);
+                const tempFilePaths = res.tempFilePaths
+                console.log(res);
+                for (var i = 0; i < tempFilePaths.length; i++) {
+                    let randString = +new Date() + '' + Math.floor(Math.random() * 100000) + '.png' //+new类型转换
+                    wx.cloud.uploadFile({
+                        cloudPath: randString,
+                        filePath: tempFilePaths[i],
+                        success: res => {
+                            if (res.statusCode == 200) {
+                                photos.add({
+                                        data: {
+                                            image: res.fileID
+                                        }
+                                    })
+                                    .then(res => {
+                                        wx.showToast({
+                                            title: '上传成功',
+                                            icon: 'success'
+                                        })
+                                    })
+                            }
+                        }
+                    })
+                }
 
+            },
+            fail: function() {
+                // fail
+            },
+            complete: function() {
+                // complete
+            }
+        })
+
+    },
     // 上传图片
     doUpload: function() {
         // 选择图片
