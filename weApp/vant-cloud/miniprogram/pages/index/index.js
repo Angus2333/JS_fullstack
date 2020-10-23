@@ -1,4 +1,5 @@
 // miniprogram/pages/index/index.js
+import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
 
     /**
@@ -19,11 +20,66 @@ Page({
             newGroupModal: false
         })
     },
+    //确认按钮
     createGroup() {
+        const self = this
+            //把groupName存到数据库中
+        if (self.data.groupName === '') {
+            Notify({
+                message: '通知内容',
+                duration: 1500,
+                selector: '#notify-selector',
+                backgroundColor: '#dc3545'
+            });
+            self.setData({
+                newGroupModal: true
+            })
+            return
+        }
+        wx.cloud.callFunction({
+            name: 'createGroup',
+            //给后端传递参数,以对象的形式
+            data: {
+                groupName: self.data.groupName
+            },
+            success(res) {
+                // console.log(res);
+                self.setData({
+                    groupName: ''
+                })
+                Notify({
+                    message: '新建成功',
+                    duration: 1500,
+                    selector: '#notify-selector',
+                    background: 'green'
+                });
+                setTimeout(() => {
+                    wx.switchTab({ //跳转tabbar专用
+                        url: '/pages/group/group',
+                        success: function(res) {
+                            // success
+                        },
+                        fail: function() {
+                            // fail
+                        },
+                        complete: function() {
+                            // complete
+                        }
+                    })
+                }, 1500)
+            },
+            fail(err) {
+                console.log('错误', err);
+            }
+        })
 
     },
-    ongroupNameChange() {
-
+    //输入框值得变化
+    ongroupNameChange(event) {
+        // console.log(event);
+        this.setData({
+            groupName: event.detail
+        })
     },
     /**
      * 生命周期函数--监听页面加载

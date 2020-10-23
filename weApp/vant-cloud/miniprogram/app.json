@@ -1,7 +1,8 @@
 {
     "pages": [
-        "pages/index/index",
         "pages/group/group",
+        "pages/index/index",
+
         "pages/personal/personal"
     ],
     "window": {
