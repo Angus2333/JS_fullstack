@@ -9,7 +9,7 @@ const db = cloud.database({ env }) //指明云函数生效的环境
 // 云函数入口函数
 exports.main = async(event, context) => {
     const openId = cloud.getWXContext().openId
-    console.log(openId);
+        // console.log(openId);
     db.collection('user-group').where({
         publishInfo: {
             groupId: 'openId'
@@ -17,17 +17,17 @@ exports.main = async(event, context) => {
     }).get({
         success: function(res) {
             // 输出 [{ "title": "The Catcher in the Rye", ... }]
-            // db.collection('group').where({
-            //     publishInfo: {
-            //         _id: 'res.'
-            //     }
-            // }).get({
-            //     success: function(res) {
-            //         // 输出 [{ "title": "The Catcher in the Rye", ... }]
-            //         console.log(res)
-            //     }
-            // })
-            // console.log(res);
+            db.collection('group').where({
+                publishInfo: {
+                    _id: 'res.'
+                }
+            }).get({
+                success: function(res) {
+                    // 输出 [{ "title": "The Catcher in the Rye", ... }]
+                    // console.log(res)
+                }
+            })
+            console.log(res);
         }
     })
 }
