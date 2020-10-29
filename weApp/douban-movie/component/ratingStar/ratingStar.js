@@ -29,7 +29,7 @@ Component({
         },
         iconSize: {
             type: String,
-            value: '26px'
+            value: '26rpx'
         }
     },
 

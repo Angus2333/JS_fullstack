@@ -5,7 +5,7 @@
 }
 
 .row {
-    margin: 20rpx 0 20px 0;
+    margin: 15rpx 0 15rpx 0;
 }
 
 .title-wrapper {
@@ -42,7 +42,7 @@
 }
 
 .scroll-view__movie {
-    height: 432rpx;
+    height: 415rpx;
     white-space: nowrap;
 }
 
