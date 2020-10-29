@@ -1,0 +1,18 @@
+<script>
+    var str = 'aa'
+    var isValid = function(str) {
+        if (!str) {
+            return
+        } else {
+            for (i = 0; i < str.length; i++) {
+                if (str.charAt(i) == str.charAt(str.length - i - 1)) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
+    }
+    console.log(isValid(str));
+    console.log(str[1]);
+</script>
