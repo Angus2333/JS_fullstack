@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn(a){
+        //   console.log(a);
+        //   var a=123;
+        //   console.log(a);
+        //   function a () {};
+        //   console.log(a);
+        //   var b=function(){}
+        //   console.log(b);
+        //   var d =a
+        //   console.log(d);
+        // }
+        /*
+          AO{
+            a:,
+
+          }
+        */
+        /*AO:{
+          a:  1 
+          b:  f 2
+          c: 0
+          d: f
+        }*/
+        global = 100
+
+        function fn() {
+            console.log(global); //un
+            global = 200
+            console.log(global); //200
+            var global = 300
+        }
+        fn()
+        var global
+            /*
+             GO:{
+               global:100,
+               fn:f
+             }
+             AO:{
+               global:200,300,
+             }
+            */
+    </script>
+</body>
+
+</html>
