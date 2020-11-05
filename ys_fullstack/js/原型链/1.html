@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Person() {
+
+        // }
+        // var person = new Person()
+        //     // console.log(person);
+        // console.log(Person.prototype);
+        //__proto__用来找原型
+        function Ground() {
+
+        }
+        var ground = new Ground()
+
+        function Father() {
+            this.name = 'zhangsan'
+        }
+        var father = new Father()
+
+        function Son() {
+            this.hobbit = 'reading'
+        }
+        Son.prototype = father
+        console.log(Son.prototype);
+        var son = new Son()
+        console.log(son.hobbit);
+        console.log(son.name);
+        console.log(Ground.prototype.__proto__);
+    </script>
+</body>
+
+</html>

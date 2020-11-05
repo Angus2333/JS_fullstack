@@ -1,0 +1,27 @@
+<script>
+    // let arr = [{
+    //     a: 1
+    // }, {
+    //     a: 2
+    // }]
+    // b = arr.map((item) => {
+    //     return `<li>${item.a}</li>`
+    // })
+    // console.log(b);
+    // let arr2 = [1, 2, 3, 4, 5]
+    // b = arr2.reduce((pre, item) => {
+    //     return pre + item
+    // }, 0)
+    // console.log(b);
+    let arr3 = [{
+        a: 1
+    }, {
+        b: 2
+    }, {
+        c: 3
+    }]
+    b = arr3.reduce((pre, item) => {
+        return Object.assign(item, pre)
+    }, {})
+    console.log(b);
+</script>
