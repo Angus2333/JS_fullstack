@@ -1,0 +1,2 @@
+<!--components/c1/c1.wxml-->
+<text>{{testValue}}</text>

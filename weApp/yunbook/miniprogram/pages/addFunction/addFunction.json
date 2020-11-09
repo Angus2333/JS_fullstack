@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "云函数指引",
-  "usingComponents": {}
+  "usingComponents": {
+    "c":"../../components/c1/c1",
+    "d":"../../components/c2/c2"
+  }
 }

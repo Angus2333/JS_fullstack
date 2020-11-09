@@ -1,0 +1,2 @@
+<!--components/c2/c2.wxml-->
+<button bindtap='test2method'>组件之间传值</button>

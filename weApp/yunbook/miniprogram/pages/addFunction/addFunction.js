@@ -10,11 +10,16 @@ exports.main = async (event, context) => {
 }`
 
 Page({
-
-  data: {
-    result: '',
-    canIUseClipboard: wx.canIUse('setClipboardData'),
-  },
+  data:{
+    testValue:""
+ },
+ test2method:function (e) {
+   //接收c2传进来的值，再设置给testValue
+   //c内部就会自动修改值
+   this.setData({ testValue: e.detail.passValue })
+   console.log(e);
+   
+ },
 
   onLoad: function (options) {
 
