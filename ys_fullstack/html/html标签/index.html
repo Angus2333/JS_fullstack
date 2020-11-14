@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        image {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <iframe src="http://www.baidu.com"></iframe> -->
+    <!-- <image src="https://img.alicdn.com/imgextra/i4/6000000002343/O1CN01R93eCl1TB8cPDNEc8_!!6000000002343-0-octopus.jpg" /> -->
+
+</body>
+<script>
+    // var a = 'a'
+
+    // function foo() {
+    //     console.log(a);
+    // }
+
+    // function bar() {
+    //     var a = 'a1'
+    //     foo()
+    // }
+    // bar()
+    console.log(a, b);
+    var a = 12,
+        b = 12;
+
+    function fn() {
+        console.log(a, b);
+        var a = b = 13; //a 会变量提升 b不会 
+        console.log(a, b);
+    }
+    fn();
+    console.log(a, b);
+</script>
+
+</html>

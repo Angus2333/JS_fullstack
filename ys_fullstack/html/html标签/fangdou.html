@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="" id="suggest">
+    <div id="wrap"></div>
+    <script>
+        //防抖！ ->电梯关门
+        //对于高频触发的事件
+        //a -> timeout 500 xxx
+        //b -> 在500ms之内又输入了b，则上一次输入无意义，继续清除定时器
+        //知道不输入了 超过500ms 开始发送请求
+        const suggest = document.querySelector('#suggest')
+        let timeout = null
+
+        function handleInput(event) {
+            if (timeout) clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                const val = event.target.value
+                    // console.log(val);
+                if (!val) return
+                const url = `http://neteasecloudmusicapi.zhaoboy.com/search?keywords=${val}`
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        let lis = data.result.songs.map((item) => {
+                            return `<li>${item.name}</li>`
+                        })
+                        let html = lis.join('')
+                        document.querySelector('#wrap').innerHTML = html
+                    })
+            }, 500)
+
+        }
+        suggest.addEventListener('input', handleInput)
+    </script>
+</body>
+
+</html>

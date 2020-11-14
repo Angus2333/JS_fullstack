@@ -21,18 +21,18 @@ function a() {
     }
     var a = 111
     b()
-    console.log(a);
+    console.log(b);
 }
 var glob = 100
-
-// aAO: {
-//   a: undefined,
-//   b: function() {}
-// }
-// bAO: {
-//   b: undefined
-// }
 a()
+    // aAO: {
+    //   a: undefined,
+    //   b: function() {}
+    // }
+    // bAO: {
+    //   b: undefined
+    // }
+
 
 // a 定义 a.[[scope]] ---> 0: GO:{}
 // a 执行 a.[[scope]] ---> 0: aGO:{} 1: GO:{}
