@@ -29,17 +29,34 @@
     //     foo()
     // }
     // bar()
-    console.log(a, b);
-    var a = 12,
-        b = 12;
+    // console.log(a, b);
+    // var a = 12,
+    //     b = 12;
 
-    function fn() {
-        console.log(a, b);
-        var a = b = 13; //a 会变量提升 b不会 
-        console.log(a, b);
+    // function fn() {
+    //     console.log(a, b);
+    //     var a = b = 13; //a 会变量提升 b不会 
+    //     console.log(a, b);
+    // }
+    // fn();
+    // console.log(a, b);
+    let node1 = {
+        val: '1',
+        next: null
     }
-    fn();
-    console.log(a, b);
+    let node2 = {
+        val: '1',
+        next: null
+    }
+    let node3 = {
+        val: '1',
+        next: null
+    }
+    node1.next = node2
+    node2.next = node3
+    node3.next = node2
+    console.log(node2);
+    console.log(node3);
 </script>
 
 </html>

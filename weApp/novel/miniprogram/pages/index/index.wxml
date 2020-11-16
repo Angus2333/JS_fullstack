@@ -1,0 +1,16 @@
+<view class="container">
+    <view class="userinfo">
+      <button
+       wx:if="{{!hasUserInfo}}"
+        open-type="getUserInfo" 
+        bindgetuserinfo="onGetUserInfo">
+        点击获取头像
+      </button>
+      <block>
+         <image mode="widthFix" class="userinfo-avatar" src="{{avatarUrl}}"></image>
+         <text class="userinfo-nickname" >
+         {{userInfo.nickName}}
+         </text>
+      </block>
+    </view>
+</view>
