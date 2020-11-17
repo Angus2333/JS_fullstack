@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/bookCity/bookCity",
-        "pages/list/list"
+        "pages/list/list",
+        "pages/bookStection/bookSetion"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",

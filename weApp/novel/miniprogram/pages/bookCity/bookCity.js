@@ -5,7 +5,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        hotData: []
+        hotData: [],
+        classifyData: [],
+        baseUrl: 'https://wap.biqiuge8.com/'
     },
 
     /**
@@ -25,13 +27,24 @@ Page({
             name: 'getList',
             data: {}
         }).then(res => {
-            console.log(res);
+            // console.log("%cnnn", "color:red");
             wx.hideLoading();
             const result = res.result
-            console.log(result);
+                // console.log(result);
+                // console.log(res.classifyData);
             this.setData({
-                hotData: result.hotData
-            })
+                    hotData: result.hotData,
+                    classifyData: result.classifyData
+                })
+                // console.log(this.data.classifyData);
+        })
+    },
+    toReading(e) {
+        // console.log(e);
+        let url = e.currentTarget.dataset.url
+            // console.log(url);
+        wx.navigateTo({
+            url: `../bookStection/bookSetion?url=${url}`
         })
     }
 
