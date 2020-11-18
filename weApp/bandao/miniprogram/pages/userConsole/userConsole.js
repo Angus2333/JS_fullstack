@@ -1,13 +1,26 @@
 // pages/userConsole/userConsole.js
 Page({
 
-  data: {
-    openid: ''
-  },
+    data: {
+        openid: ''
+    },
 
-  onLoad: function (options) {
-    this.setData({
-      openid: getApp().globalData.openid
-    })
-  }
+    onLoad: function(options) {
+
+    },
+    takePhoto() {
+        const ctx = wx.createCameraContext()
+        ctx.takePhoto({
+            quality: 'high',
+            success: (res) => {
+                console.log(res);
+                this.setData({
+                    src: res.tempImagePath
+                })
+            }
+        })
+    },
+    error(e) {
+        console.log(e.detail)
+    }
 })

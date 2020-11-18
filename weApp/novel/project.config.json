@@ -60,6 +60,12 @@
         {
           "name": "书城",
           "pathName": "pages/bookCity/bookCity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "详细页面",
+          "pathName": "pages/bookStection/bookSetion",
           "scene": null
         }
       ]
