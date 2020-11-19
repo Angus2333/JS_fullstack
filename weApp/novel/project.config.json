@@ -66,6 +66,12 @@
         {
           "name": "详细页面",
           "pathName": "pages/bookStection/bookSetion",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "书架",
+          "pathName": "pages/list/list",
           "scene": null
         }
       ]

@@ -66,6 +66,7 @@ exports.main = async(event, context) => {
         next,
         pageArray,
         lastData,
-        pageData
+        pageData,
+
     }
 }

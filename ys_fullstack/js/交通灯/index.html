@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            background-color: grey;
+            display: inline-block;
+            margin: 30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+        }
+        
+        .green.light {
+            background-color: green;
+        }
+        
+        .yellow.light {
+            background-color: yellow;
+        }
+        
+        .red.light {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="green"></div>
+    <div class="yellow"></div>
+    <div class="red"></div>
+    <script>
+        function green() {
+            return new Promise((resolve, reject) => {
+                var lights = document.getElementsByTagName("div");
+                for (var i = 0; i < 3; i++) {
+                    lights[i].classList.remove("light")
+                }
+                document.querySelector('.green')
+                    .classList.add('light')
+            })
+        }
+
+        function yellow() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    var lights = document.getElementsByTagName("div");
+                    for (var i = 0; i < 3; i++) {
+                        lights[i].classList.remove("light")
+                    }
+                    document.querySelector('.yellow')
+                        .classList.add('light')
+                })
+            }, 1000)
+
+        }
+
+        function red() {
+            return new Promise((resolve, reject) => {
+                var lights = document.getElementsByTagName("div");
+                for (var i = 0; i < 3; i++) {
+                    lights[i].classList.remove("light")
+                }
+                document.querySelector('.red')
+                    .classList.add('light')
+            })
+        }
+
+        // function yellow() {
+        //     var lights = document.getElementsByTagName("div");
+        //     for (var i = 0; i < 3; i++) {
+        //         lights[i].classList.remove("light")
+        //     }
+        //     document.querySelector('.yellow')
+        //         .classList.add('light')
+        // }
+
+        // function red() {
+        //     var lights = document.getElementsByTagName("div");
+        //     for (var i = 0; i < 3; i++) {
+        //         lights[i].classList.remove("light")
+        //     }
+        //     document.querySelector('.red')
+        //         .classList.add('light')
+        // }
+
+        green().then(res => {
+            return yellow()
+        }).then(res => {
+            return red()
+        })
+    </script>
+</body>
+
+</html>

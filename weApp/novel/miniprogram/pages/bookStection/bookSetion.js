@@ -1,7 +1,8 @@
 // miniprogram/pages/bookSection/bookSection.js
 const db = wx.cloud.database()
-const app = getApp()
+const app = getApp();
 Page({
+
     /**
      * 页面的初始数据
      */
@@ -22,23 +23,26 @@ Page({
             name: 'bookSection',
             data: {
                 url: url
-            },
-            success: res => {
-                // console.log(res);
-                wx.hideLoading();
-                const { result } = res
-                this.setData({
-                    bookDetailData: result.bookDetailData,
-                    lastData: result.lastData,
-                    pageData: result.pageData,
-                    pageArray: result.pageArray,
-                    pre: result.pre,
-                    next: result.next,
-                    preAble: result.pre === '' ? true : false,
-                    nextAble: result.next === '' ? true : false,
-                    page: (result.next.split('/')[2]) - 1
-                })
             }
+        }).then(res => {
+            console.log(res);
+            wx.hideLoading();
+            const { result } = res;
+            console.log(res);
+            this.setData({
+                bookDetailData: result.bookDetailData,
+                lastData: result.lastData,
+                pageData: result.pageData,
+                pageArray: result.pageArray,
+                pre: result.pre,
+                next: result.next,
+                preAble: result.pre === '' ? true : false,
+                nextAble: result.next === '' ? true : false,
+                page: (result.next.split('/')[2]) - 1
+            })
+            console.log(this.data.lastData);
+        }).catch(err => {
+            console.log(err);
         })
     },
     //上一页
@@ -50,30 +54,18 @@ Page({
         if (this.data.nextAble) return;
         this.getSection(this.data.next);
     },
-    //下一页
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function(options) {
-        // console.log(options);
-        this.getSection();
-        const { url } = options;
-        this.getSection(url);
-    },
-    bindPickerChange(e) {
-        // console.log(e);
-        const page = parseInt(e.detail.value)
-        if (page !== this.page) {
-            this.getSection(this.data.pageArray[page].name)
+    bindDateChange(event) {
+        // console.log(event);
+        let page = parseInt(event.detail.value)
+        this.getSection(this.data.pageArray[page].name);
+        if (page != this.page) {
+            this.setData({
+                page: page + 1
+            })
         }
-        this.setData({
-            page: page + 1
-        })
-
     },
-    //加入书架
     joinBook(e) {
-        let url = e.currentTarget.dataset.url
+        let url = e.currentTarget.dataset.url;
         db.collection('book').where({
             userId: app.globalData.openid,
             bookName: this.data.bookDetailData.name
@@ -85,28 +77,28 @@ Page({
                         userId: app.globalData.openid,
                         bookName: this.data.bookDetailData.name,
                         bookUrl: url,
-                        imgUrl: this.data.bookDetailData.imgUrl
+                        imgurl: this.data.bookDetailData.imgurl
                     }
                 }).then(res => {
-                    // console.log(res);
                     wx.showToast({
-                        icon: 'success',
-                        title: '加入成功'
+                        icon: 'succes',
+                        title: '加入成功',
                     }, 3000)
                 })
             } else {
                 wx.showToast({
                     icon: 'none',
-                    title: '本书已在书架'
+                    title: '本书已在书架，请到书架阅读'
                 })
             }
         })
     },
     //去看小说
     navtoUrl(e) {
-        // console.log(e);
-        let url = e.currentTarget.dataset.url
-            //已经存在书架的书，记录阅读状态
+        console.log(e);
+        let url = e.currentTarget.dataset.url;
+        console.log(this.data.bookDetailData.name);
+        //已经保存在书架的书，记录阅读状态
         if (url) {
             db.collection('book').where({
                 userId: app.globalData.openid,
@@ -121,15 +113,27 @@ Page({
                                 bookUrl: url
                             }
                         }).then(res => {
-                            // console.log(res);
+                            console.log(res);
                         })
                     }
                 }
             })
         }
+
         wx.navigateTo({
-            url: `../bookContent/bookContent?url=${url}&${this.data.bookDetailData.name}&${this.data.bookDetailData.imgUrl}`
+            url: `../bookContent/bookContent?url=${url}&name=${this.data.bookDetailData.name}&imgUrl=${this.data.bookDetailData.imgurl}`
         })
-    }
+    },
+    //下一页
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
+        console.log(options);
+        this.getSection();
+        const { url } = options;
+        this.getSection(url);
+    },
+
 
 })

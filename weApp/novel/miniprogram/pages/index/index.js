@@ -18,7 +18,7 @@ Page({
 
     },
     onGetUserInfo(e) {
-        console.log(e);
+        // console.log(e);
         if (e.detail.userInfo) {
             app.globalData.userInfo = e.detail.userInfo
             this.setData({
