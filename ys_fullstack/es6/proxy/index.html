@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- input是行内块级 span 行内 -->
+    <sapn id="span">hello</sapn>
+
+    <input type="text" name="" id="input"></div>
+    <script>
+        let data = {
+            _text: 'helloworld'
+        }
+        const input = document.getElementById('input')
+        const sapn = document.getElementById('span')
+        Object.defineProperty(data, 'text', {
+            get() {
+                // console.log('获取数据');
+                return data._text
+            },
+            set(newVal, oldVal) {
+                span.innerHTML = newVal
+            }
+        })
+
+        input.addEventListener('keyup', (e) => {
+                data.text = e.target.value
+                console.log(data._text);
+            })
+            // data._text = 'www'
+    </script>
+</body>
+
+</html>
