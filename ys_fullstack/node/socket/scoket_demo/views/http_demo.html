@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            background-color: #307ac6;
+            text-align: center;
+            color: aquamarine;
+            margin: 10% 10%;
+        }
+        
+        input {
+            margin-top: 5vh;
+            width: 200px;
+            height: 40px;
+            border: azure 1px solid;
+            border-radius: 4px;
+            color: black;
+            padding-left: 10px;
+        }
+        
+        button {
+            border: none;
+            background-color: #fff;
+            border-radius: 4px;
+            width: 90px;
+            height: 42px;
+            color: black;
+        }
+        
+        #infos {
+            margin-left: 15vw;
+            width: 400px;
+            height: 500px;
+            overflow: hidden;
+            border: none;
+            background-color: #fff;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>welcome to 旅梦</h1>
+    <div id="infos"></div>
+    <input type="text" id="send_info" value="" placeholder="你想说啥">
+    <button id="btn" type="button">发送</button>
+    <script>
+        var socket = io()
+        document.getElementById('btn').onclick = function() {
+            socket.emit('link_to_server', document.getElementById('send_info').value)
+        }
+
+        //接受到服务端的响应
+        socket.on('link_to_client', (msg) => {
+            document.getElementById('infos').append(`${msg}`)
+        })
+    </script>
+</body>
+
+</html>
