@@ -11,10 +11,10 @@
       </div>
        <div class="wrap2">
             <el-input placeholder="请输入密码" v-model="password" 
-              prefix-icon="el-icon-unlock"
+              prefix-icon="el-icon-unlock" v-on:keyup.enter='submit'
              ></el-input>
        </div>
-       <el-button type="primary" @click="login">登录</el-button>
+       <el-button type="primary" size="medium" @click="login">登录</el-button>
     </div>
   </div>
 </template>
@@ -31,14 +31,15 @@ export default {
     login(){
       console.log('11');
       if(this.userName=='admin'&&this.password=='123456'){
-        this.$router.push({name:'Home'})
+        this.$router.push({name:'Home',params:{user:this.userName}})
+        localStorage.setItem('user',this.userName)
       }
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 *{
   margin: 0;
   padding: 0;
@@ -48,12 +49,14 @@ body{
 }
 h2{
   margin: 20px;
+  color: #fff;
 }
 .login{
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
+   background-color: rgb(25, 199, 161);
   /* background-color: #fff; */
 }
 .login-container{
@@ -69,5 +72,9 @@ h2{
 }
 .wrap2{
   padding: 10px 50px;
+}
+.el-button{
+  width: 50px;
+  height: 30px;
 }
 </style>
