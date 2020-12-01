@@ -1,0 +1,21 @@
+<script>
+  //量词
+  //{1,2}
+  // var reg=/ab|ba/
+  // // console.log(reg.test('ab'));
+  // //24小时格式  18:22
+  // // var reg1=/[01][0-9]|[2][0-3]:[0-5][0-9]
+  // var reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+ 
+  // console.log(reg1.test('121:23'));
+  let str='aa'
+  let reg=/a/g 
+  //最后一次匹配的位置，从0开始，每匹配一次lastIndex加1，匹配完从头开始
+  console.log(reg.test(str)); //true
+  console.log(reg.test(str)); //true
+  console.log(reg.lastIndex); //2
+  console.log(reg.test(str)); //false
+  console.log(reg.test(str)); //true
+  //解决办法：
+  console.log(/a/g.test(str)); //true
+</script>
