@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1{
+      width: 200px;
+      height: 200px;
+    }
+    h1::after{
+      content: attr(data-name);
+    }
+  </style>
+</head>
+<body>
+  <h1 class="hello" data-name="玩转css的艺术"></h1>
+  <script>
+    const helloEle=document.querySelector('.hello')
+    console.log(helloEle.getAttribute('data-name'));
+  </script>
+</body>
+</html>
