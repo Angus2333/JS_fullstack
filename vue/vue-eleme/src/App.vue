@@ -12,7 +12,7 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view/>
+    <router-view :seller="seller" />
   </div>
 </template>
 <script>
@@ -34,7 +34,7 @@ export default {
     getSeller({
       id:this.seller.id
     }).then((seller)=>{
-      // console.log(seller);
+      console.log(seller);
       this.seller=Object.assign({},this.seller,seller)
     })
   },

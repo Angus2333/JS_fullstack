@@ -37,6 +37,10 @@
                     <span class="now">￥{{food.price}}</span>
                     <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                   </div>
+                  <!-- 加号 -->
+                  <div class="cartcontrol-wrapper">
+                    <CartControl :food="food"></CartControl>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -44,6 +48,13 @@
         </ul>
       </div>
     </div>
+    <!-- 购物车 -->
+    <ShopCart
+     :selectFoods="selectFoods"
+     :deliveryPrice="seller.deliveryPrice"
+     :minPrice="seller.minPrice"
+     >
+     </ShopCart>
   </div>
 </template>
 
@@ -51,8 +62,14 @@
 import {getGoods} from "../../api/index"
 import BScroll from 'better-scroll'
 import SupportIco from '@/components/support-ico/Support-ico'
-
+import ShopCart from '@/components/shop-cart/Shop-cart'
+import CartControl from '@/components/cart-control/Cart-control'
 export default {
+  props:{
+    seller:{
+      type:Object
+    }
+  },
   data () {
     return {
        goods:[],
@@ -106,7 +123,9 @@ export default {
     }
   },
   components: {
-    SupportIco
+    SupportIco,
+    ShopCart,
+    CartControl
   },
   computed:{
     currentIndex(){
@@ -118,6 +137,19 @@ export default {
         }
       }
       return 0
+    },
+    selectFoods(){
+      let foods=[]
+      for(let good of this.goods){
+        if(good.foods){
+          for(let food of good.foods){
+            if(food.count){
+              foods.push(food)
+            }
+          }
+        }
+      }
+      return foods
     }
   }
 };
@@ -161,6 +193,7 @@ export default {
       background #f3f5f7
     .food-item
       display flex
+      position: relative;
       margin: 18px;
       padding-bottom: 18px;
       &:last-child
@@ -199,5 +232,8 @@ export default {
             text-decoration line-through
             font-size 10px
             color rgb(147, 153, 159)
-
+        .cartcontrol-wrapper
+          position absolute
+          right: 0;
+          bottom: 12px;
 </style>
