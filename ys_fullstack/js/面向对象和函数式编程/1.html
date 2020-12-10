@@ -1,0 +1,18 @@
+<script>
+  let url='http://www.baidu.com/?a=3&b=3'
+  function parseQueryString(url) {
+		   let obj={}
+       let isQuery=url.indexOf('?')>=0
+       if(isQuery){
+         let queryString=url.slice(url.indexOf('?')+1)
+         let querys=queryString.split('&')
+         querys.forEach(kv=>{
+           let [k,v]=kv.split('=')
+           obj[k]=v
+         })
+       }
+       return obj
+		}
+    parseQueryString(url)
+    console.log(parseQueryString(url));
+</script>

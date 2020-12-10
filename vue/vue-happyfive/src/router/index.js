@@ -6,8 +6,8 @@ Vue.use(VueRouter)
 
 const routes = [
    { path: '/', component: ()=>import('@/views/home') },
-   { path: '/item', component: ()=>import('@/views/item') }
-
+   { path: '/item', component: ()=>import('@/views/item') },
+   { path: '/score', component: ()=>import('@/views/score') }
 ]
 
 const router = new VueRouter({

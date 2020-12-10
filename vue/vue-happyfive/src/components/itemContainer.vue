@@ -15,20 +15,31 @@
         <div class="item_list_container">
           <header class="item_title">{{itemDetail[itemNum-1].topic_name}}</header>
           <ul>
-            <li class="item_list" v-for="(item,index) in itemDetail[itemNum-1].topic_answer" :key="index" @click="choosed(index,item.topic_answer_id)">
+            <li class="item_list" v-for="(item,index) in itemDetail[itemNum-1].topic_answer" :key="index" @click="choosed(index,item.is_standard_answer)">
               <span class="option_style" :class="{'has_choosed': choosedNum == index}">{{chooseType(index)}}</span>
               <span class="option_detail">{{item.answer_name}}</span>
             </li>
           </ul>
         </div>
       </div>
-      <span class="next_item button_style" @click="nextItem"></span>
+      <span 
+        v-if="itemNum<itemDetail.length" 
+        class="next_item button_style"
+        @click="nextItem">
+      </span>
+      <span 
+        v-else
+        class="submit_item button_style"
+        @click="submitAnswer"
+       >
+       </span>
     </div>
   </section>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import {mapActions} from 'vuex'
 export default {
   props:['fatherComponent'],
   data(){
@@ -38,7 +49,7 @@ export default {
       choosedId:null,//选中的答案的id
     }
   },
-  computed:mapState(['itemDetail','itemNum']),
+  computed:mapState(['itemDetail','itemNum','answerId']),
   created(){
     if(this.fatherComponent === 'home'){
       //出现首页的dom
@@ -55,13 +66,31 @@ export default {
       }
     },
     choosed(index,id){
+      // console.log('aaa');
       this.choosedNum = index;
       this.choosedId = id;
     },
+     ...mapActions(['addNum']),
     nextItem(){
       if(this.choosedNum!==null){
+        console.log(this.answerId);
         //清除chooseNum
-        //保存答案，
+        this.choosedNum=null
+        //保存答案，题目索引加1
+      //  this.itemNum++ 不能这样写！！！
+         this.addNum(this.choosedId)
+
+      }else{
+        alert('您还没有选择答案哦')
+      }
+    },
+   
+    //到达最后一题交卷
+    submitAnswer(){
+      if(this.choosedNum!==null){
+         this.addNum(this.choosedId)
+         console.log(this.answerId);
+         this.$router.push('/score')
       }else{
         alert('您还没有选择答案哦')
       }
