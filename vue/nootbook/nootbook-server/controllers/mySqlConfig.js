@@ -33,7 +33,32 @@ let userLogin=function(username,userpwd){
   let _sql=`select * from users where username="${username}" and userpwd="${userpwd}";`
   return allServices.query(_sql)
 }
+//注册查找用户
+let findUser=function(username){
+  let _sql=`select * from users where username="${username}";`
+  return allServices.query(_sql)
+}
 
+//注册用户
+let insertUser=function(value){
+  let _sql=`insert into users set username=?,userpwd=?,nickname=?;`
+  return allServices.query(_sql,value)
+}
+//根据分类查找对应的文章列表
+let findNoteListByType=function(note_type){
+  let _sql=`select * from note where note_type="${note_type}";`
+  return allServices.query(_sql)
+}
+
+//根据id查文章
+let findNoteDetailById=function(id){
+  let _sql=`select * from note where id="${id}";`
+  return allServices.query(_sql)
+}
 module.exports={
-  userLogin
+  userLogin,
+  findUser,
+  insertUser,
+  findNoteListByType,
+  findNoteDetailById
 }

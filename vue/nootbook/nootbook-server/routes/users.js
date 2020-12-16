@@ -9,13 +9,14 @@ router.get('/', function (ctx, next) {
 router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
+//登录
 router.post('/userLogin',async(ctx,next)=>{
   let _username=ctx.request.body.username;
   let _userpwd=ctx.request.body.userpwd;
   //把参数拿到数据库里查询
   await userService.userLogin(_username,_userpwd)
   .then(res=>{
-    console.log(res);
+    // console.log(res);
     let r='';
     if(res.length){
       r='ok';
@@ -46,5 +47,89 @@ router.post('/userLogin',async(ctx,next)=>{
     }
   })
 })
-router.post('/userRegister')
+//注册
+router.post('/userRegister',async(ctx,next)=>{
+  let _username=ctx.request.body.username;
+  let _userpwd=ctx.request.body.userpwd;
+  let _nickname=ctx.request.body.nickname; 
+  // console.log(_username,_userpwd,_nickname);
+  if(!_username||!_nickname||!_userpwd){
+    ctx.body={
+      code:'80001',
+      mess:'用户名或密码不能为空'
+    }
+  }
+  await userService.findUser(_username).then(async(res)=>{
+    // console.log(res);
+    if(res.length){
+      ctx.body={
+        mess:'用户名已存在',
+        code:'80003'
+      }
+    }else{
+      await userService.insertUser([_username,_userpwd,_nickname]).then(res=>{
+        // console.log(res);
+        let r=''
+        if(res.affectedRows!=0){
+          r='ok'
+          ctx.body={
+            code:'80000',
+            data:r,
+            mess:'注册成功'
+          }
+        }else{
+          r='error'
+          ctx.body={
+            code:'80004',
+            data:r,
+            mess:'注册成功'
+          }
+        }
+      })
+    }
+  })
+})
+//查找文章对应列表
+router.post('/findNoteListByType',async (ctx,next)=>{
+  let note_type=ctx.request.body.note_type
+  await userService.findNoteListByType(note_type).then(res=>{
+    // console.log(res);
+    let r=''
+    if(res.length){
+      r='ok'
+      ctx.body={
+        code:'80000',
+        data:res,
+        mess:'查找成功'
+      }
+    }else{
+      r='error'
+      ctx.body={
+        code:'80004',
+        mess:'查找失败'
+      }
+    }
+  })
+})
+router.post('/findNoteDetailById',async(ctx,next)=>{
+  let id=ctx.request.body.id
+  await userService.findNoteDetailById(id).then(res=>{
+    console.log(id);
+    let r=''
+    if(res.length){
+      r='ok'
+      ctx.body={
+        code:'80000',
+        data:res[0],
+        mess:'查找成功'
+      }
+    }else{
+      r='error'
+      ctx.body={
+        code:'80004',
+        mess:'查找失败'
+      }
+    }
+  })
+})
 module.exports = router
