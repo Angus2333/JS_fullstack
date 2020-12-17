@@ -1,5 +1,6 @@
 const router = require('koa-router')()
 const userService=require('../controllers/mySqlConfig')
+const formatDate=require('../config/util')
 router.prefix('/users') //prefix为前缀
 
 router.get('/', function (ctx, next) {
@@ -130,6 +131,34 @@ router.post('/findNoteDetailById',async(ctx,next)=>{
         mess:'查找失败'
       }
     }
+  })
+})
+router.post('/insertNote',async(ctx,next)=>{
+  let note_content=ctx.request.body.note_content;
+  let head_img=ctx.request.body.head_img;
+  let title=ctx.request.body.title;
+  let note_type=ctx.request.body.note_type;
+  let useId=ctx.request.body.userId;
+  let nickname=ctx.request.body.nickname;
+  let c_time=formatDate(new Date().getTime(),'YY年MM月DD日')
+  await userService.insertNote([useId,title,note_type,note_content,c_time,head_img,nickname]).then(res=>{
+    console.log(res);
+    let r=''
+        if(res.affectedRows!=0){
+          r='ok'
+          ctx.body={
+            code:'80000',
+            data:r,
+            mess:'注册成功'
+          }
+        }else{
+          r='error'
+          ctx.body={
+            code:'80004',
+            data:r,
+            mess:'注册成功'
+          }
+        }
   })
 })
 module.exports = router
