@@ -9,10 +9,17 @@
         placeholder="请输入密码"
         type="password"
       />
+       <van-field
+        v-show="!isLogin"
+        v-model="rePassword"
+        label="重复密码"
+        placeholder="请再次输入密码"
+        type="password"
+      />
     </van-cell-group>
     <van-row>
-      <van-button size="small" type="default">注册</van-button>
-      <van-button size="small" type="info" class="btn-login" @click="handleLogin">登录</van-button>
+      <van-button size="small" type="default" @click="handleRegister">{{isLogin?'注册':'已有账号'}}</van-button>
+      <van-button size="small" type="info" class="btn-login" @click="handleLogin">{{isLogin?'登录':'注册并登录'}}</van-button>
     </van-row>
   </div>
 </template>
@@ -23,6 +30,8 @@ export default {
     return {
       username: "",
       password: "",
+      rePassword:'',
+      isLogin:true
     };
   },
   methods: {
@@ -32,6 +41,8 @@ export default {
         password:this.password
       }).then(res=>{
         console.log(res);
+         this.$toast.clear()
+         this.$router.push('/home')
       })
     },
     handleLogin(){
@@ -39,8 +50,26 @@ export default {
         this.$toast.fail('用户名密码不能为空')
         return
       }
-      this.showLoginTip('登录中')
-      this.login()
+      if(this.isLogin){
+        this.showLoginTip('登录中')
+        this.login()
+      }else{//注册
+        if(this.rePassword!=this.password){
+          this.$toast.fail('两次输入的密码不一致')
+          return
+        }else{
+           this.showLoginTip('注册登录中')
+           this.$http.register({
+             username:this.username,
+             password:this.password
+           }).then(res=>{
+             console.log(res);
+             this.$toast.clear()
+             this.$router.push('/home')
+           })
+        }
+      }
+      
     },
     showLoginTip(status){
       this.$toast.loading({
@@ -49,6 +78,10 @@ export default {
         loadingType: 'spinner',
         duration:0
       })
+    },
+    //注册
+    handleRegister(){
+       this.isLogin=!this.isLogin
     }
   }
 };
