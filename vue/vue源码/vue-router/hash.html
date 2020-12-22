@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <ul>
+      <!-- 加上#才是哈希，否则直接页面跳转 -->
+      <li><a href="#/home">home</a></li> 
+      <li><a href="#/about">about</a></li>
+    </ul>
+    <!-- 渲染对应的ui -->
+    <div id="routerView">
+    
+    </div>
+    <script>
+      let routerView=document.getElementById('routerView')
+      window.addEventListener('hashchange',()=>{
+        hash=location.hash
+        routerView.innerHTML=`<h1>${hash}</h1>`
+      })
+      //初次页面跳转，给hash赋值 '/'
+      window.addEventListener('DOMContentLoaded',()=>{
+        if(!location.hash){
+          location.hash='/'
+        }else{
+          hash=location.hash
+          routerView.innerHTML=`<h1>${hash}</h1>`
+        }
+      })
+    </script>
+</body>
+</html>
