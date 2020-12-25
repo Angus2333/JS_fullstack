@@ -9,7 +9,6 @@ class VueRouter {
     this.mode = options.mode || 'hash'
     this.routes = options.routes || []
     this.routesMap = this.createMap(this.routes)
-
     this.history = new HistoryRoute() // 装当前路由的状态
     this.init()
   }
