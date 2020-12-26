@@ -15,9 +15,15 @@ function MyPromise(fn){ // fn 有两个参数 resolve函数 和  reject 函数
   }
 
   function resolve(value){ //promise状态是不可逆的，不可能resolve和reject一起执行
+    // console.log("ccc");
     if(that.state===PENDING){
+      // console.log('ddd');
       that.state=RESOLVED  //一旦状态变成resolve，reject就永远不可能执行
       that.value = value   //把resolve的拿到的参数给MYPromise中的value保存
+      that.resolvedCallbacks.map(cb=>{
+        cb(that.value)  //这里就是为什么.then的回调函数为什么能拿到resolve的参数
+      })
+    }else{
       that.resolvedCallbacks.map(cb=>{
         cb(that.value)  //这里就是为什么.then的回调函数为什么能拿到resolve的参数
       })
@@ -35,7 +41,7 @@ function MyPromise(fn){ // fn 有两个参数 resolve函数 和  reject 函数
   }
   
   MyPromise.prototype.then=function(onFulfilled,onRejected){
-    console.log('111');
+    // console.log('111');
     const that = this
     onFulfilled= typeof onFulfilled==='function' ? onFulfilled:v=>v
     onRejected= typeof onRejected==='function' ? onRejected:r=>{throw r}
@@ -53,14 +59,12 @@ function MyPromise(fn){ // fn 有两个参数 resolve函数 和  reject 函数
 
 function a(){
   return new MyPromise((resolve,j)=>{
-    setTimeout(()=>{
-      console.log('aa');
-      resolve()
-    })
-    
+    console.log('aaa');
+    resolve('bbb')
   })
 }
-a().then(()=>{
-  console.log('bbb');
+a().then(res=>{
+  console.log(res);
+  
 })
 // 面试：为什么promise里面的代码先执行,.then()里面的代码后执行？
