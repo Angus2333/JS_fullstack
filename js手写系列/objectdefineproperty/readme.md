@@ -1,4 +1,4 @@
-# 
+# Object.defineProperty
 
 只能出现数据描述符，或者存取描述符，不能同时出现两种
 数据描述符：writable
