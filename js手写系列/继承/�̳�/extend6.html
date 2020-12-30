@@ -1,0 +1,25 @@
+<script>
+  // 寄生组合式继承
+  function  Parent(params) {
+    this.name = params
+    this.color = ['red', 'black', 'pink']
+  }
+  function Child(name, age) {
+    Parent.call(this, name)
+    this.age = age
+  } 
+  let anotherPrototype = Object.create(Parent.prototype)
+  anotherPrototype.constructor = Parent
+  Parent.prototype.say = function (params) {
+    console.log(params);
+  }
+  Child.prototype = anotherPrototype
+  let child1 = new Child('j', '19')
+  let child2 = new Child('k', '18')
+  child1.name = 'jerry'
+  console.log(child1);
+  console.log(child2.name);
+  child1.color.push('Lee')
+  console.log(child2);
+  console.log(child2.color);
+</script>

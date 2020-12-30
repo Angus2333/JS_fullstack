@@ -44,6 +44,7 @@ class Store {
   dispatch(method,arg){
     this.mutations[method](arg)
   }
+   
 }
 
 let install = function (vue) {

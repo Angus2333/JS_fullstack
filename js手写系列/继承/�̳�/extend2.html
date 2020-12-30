@@ -1,0 +1,18 @@
+<script>
+  // 借用构造函数继承
+  // 避免应用类型的属性被所有实例共享
+  // 缺点： 函数不能复用   不能继承原型属性和方法
+  function Parent(name) {
+    this.names = ['mark', 'henry']
+    this.name = name
+  }
+  function Child(name) {
+    Parent.call(this, name)
+  }
+
+  let child1 = new Child('aaa')
+  child1.names.push('jack')
+  let child2 = new Child('bbb')
+  console.log(child1);
+  console.log(child2);
+</script>
