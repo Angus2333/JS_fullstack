@@ -18,7 +18,7 @@ xhr.onreadystatechange = () => {
 
 //基于Promise 实现ajax
 function ajax(options) {
-  let url = options.url;
+  let url =  options.url;
   const method = options.method.toLowerCase() || 'get';
   const async = options.async;
   const data = options.data;
